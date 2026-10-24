@@ -22,12 +22,22 @@ def print_recommendations(name: str, user_prefs: dict, recommendations) -> None:
             print(f"   - {reason}")
 
 
+PROFILES = {
+    "High-Energy Pop": {"genre": "pop", "mood": "happy", "energy": 0.85, "likes_acoustic": False},
+    "Chill Lofi": {"genre": "lofi", "mood": "chill", "energy": 0.35, "likes_acoustic": True},
+    "Deep Intense Rock": {"genre": "rock", "mood": "intense", "energy": 0.9, "likes_acoustic": False},
+    # Adversarial / edge-case profiles
+    "Conflicted: Sad but High-Energy": {"genre": "blues", "mood": "sad", "energy": 0.9},
+    "Unknown Genre: K-pop": {"genre": "k-pop", "mood": "happy", "energy": 0.7},
+}
+
+
 def main() -> None:
     songs = load_songs("data/songs.csv")
     print(f"Loaded songs: {len(songs)}")
 
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
-    print_recommendations("Default: Pop / Happy", user_prefs, recommend_songs(user_prefs, songs, k=5))
+    for name, prefs in PROFILES.items():
+        print_recommendations(name, prefs, recommend_songs(prefs, songs, k=5))
 
 
 if __name__ == "__main__":

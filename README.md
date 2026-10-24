@@ -136,38 +136,203 @@ These results match my intuition: *Sunrise City* is the only song that is pop **
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+### Five user profiles
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+`python -m src.main` runs three normal profiles and two adversarial ones (also saved in `outputs/profile_runs.txt`):
+
+```
+Loaded songs: 20
+
+=== High-Energy Pop ===
+Profile: genre=pop, mood=happy, energy=0.85, likes_acoustic=False
+
+1. Sunrise City by Neon Echo (pop, happy)
+   Score: 4.87
+   - genre match: pop (+2.0)
+   - mood match: happy (+1.0)
+   - energy 0.82 vs target 0.85 (+1.46)
+   - electronic/produced sound, acousticness 0.18 (+0.41)
+2. Gym Hero by Max Pulse (pop, intense)
+   Score: 3.85
+   - genre match: pop (+2.0)
+   - energy 0.93 vs target 0.85 (+1.38)
+   - electronic/produced sound, acousticness 0.05 (+0.47)
+3. Fuego Lento by Mar y Sol (latin, happy)
+   Score: 2.77
+   - mood match: happy (+1.0)
+   - energy 0.80 vs target 0.85 (+1.43)
+   - electronic/produced sound, acousticness 0.30 (+0.35)
+4. Rooftop Lights by Indigo Parade (indie pop, happy)
+   Score: 2.69
+   - mood match: happy (+1.0)
+   - energy 0.76 vs target 0.85 (+1.36)
+   - electronic/produced sound, acousticness 0.35 (+0.33)
+5. Storm Runner by Voltline (rock, intense)
+   Score: 1.86
+   - energy 0.91 vs target 0.85 (+1.41)
+   - electronic/produced sound, acousticness 0.10 (+0.45)
+
+=== Chill Lofi ===
+Profile: genre=lofi, mood=chill, energy=0.35, likes_acoustic=True
+
+1. Library Rain by Paper Lanterns (lofi, chill)
+   Score: 4.93
+   - genre match: lofi (+2.0)
+   - mood match: chill (+1.0)
+   - energy 0.35 vs target 0.35 (+1.50)
+   - acoustic sound, acousticness 0.86 (+0.43)
+2. Midnight Coding by LoRoom (lofi, chill)
+   Score: 4.75
+   - genre match: lofi (+2.0)
+   - mood match: chill (+1.0)
+   - energy 0.42 vs target 0.35 (+1.40)
+   - acoustic sound, acousticness 0.71 (+0.35)
+3. Focus Flow by LoRoom (lofi, focused)
+   Score: 3.81
+   - genre match: lofi (+2.0)
+   - energy 0.40 vs target 0.35 (+1.42)
+   - acoustic sound, acousticness 0.78 (+0.39)
+4. Spacewalk Thoughts by Orbit Bloom (ambient, chill)
+   Score: 2.85
+   - mood match: chill (+1.0)
+   - energy 0.28 vs target 0.35 (+1.40)
+   - acoustic sound, acousticness 0.92 (+0.46)
+5. Coffee Shop Stories by Slow Stereo (jazz, relaxed)
+   Score: 1.92
+   - energy 0.37 vs target 0.35 (+1.47)
+   - acoustic sound, acousticness 0.89 (+0.45)
+
+=== Deep Intense Rock ===
+Profile: genre=rock, mood=intense, energy=0.9, likes_acoustic=False
+
+1. Storm Runner by Voltline (rock, intense)
+   Score: 4.93
+   - genre match: rock (+2.0)
+   - mood match: intense (+1.0)
+   - energy 0.91 vs target 0.90 (+1.48)
+   - electronic/produced sound, acousticness 0.10 (+0.45)
+2. Gym Hero by Max Pulse (pop, intense)
+   Score: 2.93
+   - mood match: intense (+1.0)
+   - energy 0.93 vs target 0.90 (+1.46)
+   - electronic/produced sound, acousticness 0.05 (+0.47)
+3. Bassline Bloom by DJ Kestrel (edm, euphoric)
+   Score: 1.91
+   - energy 0.95 vs target 0.90 (+1.43)
+   - electronic/produced sound, acousticness 0.03 (+0.48)
+4. Iron Tide by Grave Signal (metal, angry)
+   Score: 1.88
+   - energy 0.97 vs target 0.90 (+1.40)
+   - electronic/produced sound, acousticness 0.04 (+0.48)
+5. Sunrise City by Neon Echo (pop, happy)
+   Score: 1.79
+   - energy 0.82 vs target 0.90 (+1.38)
+   - electronic/produced sound, acousticness 0.18 (+0.41)
+
+=== Conflicted: Sad but High-Energy ===
+Profile: genre=blues, mood=sad, energy=0.9
+
+1. Rainy Day Blues by Otis Gray (blues, sad)
+   Score: 3.72
+   - genre match: blues (+2.0)
+   - mood match: sad (+1.0)
+   - energy 0.38 vs target 0.90 (+0.72)
+2. Storm Runner by Voltline (rock, intense)
+   Score: 1.48
+   - energy 0.91 vs target 0.90 (+1.48)
+3. Gym Hero by Max Pulse (pop, intense)
+   Score: 1.46
+   - energy 0.93 vs target 0.90 (+1.46)
+4. Bassline Bloom by DJ Kestrel (edm, euphoric)
+   Score: 1.43
+   - energy 0.95 vs target 0.90 (+1.43)
+5. Iron Tide by Grave Signal (metal, angry)
+   Score: 1.40
+   - energy 0.97 vs target 0.90 (+1.40)
+
+=== Unknown Genre: K-pop ===
+Profile: genre=k-pop, mood=happy, energy=0.7
+
+1. Rooftop Lights by Indigo Parade (indie pop, happy)
+   Score: 2.41
+   - mood match: happy (+1.0)
+   - energy 0.76 vs target 0.70 (+1.41)
+2. Fuego Lento by Mar y Sol (latin, happy)
+   Score: 2.35
+   - mood match: happy (+1.0)
+   - energy 0.80 vs target 0.70 (+1.35)
+3. Sunrise City by Neon Echo (pop, happy)
+   Score: 2.32
+   - mood match: happy (+1.0)
+   - energy 0.82 vs target 0.70 (+1.32)
+4. Night Drive Loop by Neon Echo (synthwave, moody)
+   Score: 1.42
+   - energy 0.75 vs target 0.70 (+1.42)
+5. Concrete Verses by Lyric Kade (hip-hop, confident)
+   Score: 1.38
+   - energy 0.78 vs target 0.70 (+1.38)
+```
+
+**What the differences show:**
+
+- **High-Energy Pop vs. Chill Lofi:** the pop list is all high-energy songs (0.76–0.93), while the lofi list shifts to calm, acoustic tracks (0.28–0.42 energy, acousticness 0.71–0.92). Their target energies and acoustic preferences are opposite, so they share no songs.
+- **High-Energy Pop vs. Deep Intense Rock:** both are loud, and *Gym Hero* appears in both: pop fans get it for the genre match, rock fans for the "intense" mood and 0.93 energy.
+- **Chill Lofi vs. Deep Intense Rock:** once the genre runs out, the lofi list falls back to ambient and jazz, and the rock list falls back to EDM and metal. Energy acts as the "vibe".
+- **Adversarial, Conflicted (sad blues at 0.9 energy):** *Rainy Day Blues* still wins with an energy of 0.38, because genre + mood (3.0) outweigh the whole energy score (1.5). The system can be "tricked" into ignoring a stated preference.
+- **Adversarial, Unknown genre (K-pop):** with no genre match possible, the top score drops from 4.87 to 2.41, and the order is decided by tiny energy differences.
+
+### Weight shift: energy ×2, genre ×0.5
+
+(also saved in `outputs/weight_experiment.txt`)
+
+```
+Experiment: GENRE_POINTS 2.0 -> 1.0, ENERGY_POINTS 1.5 -> 3.0 (max possible score becomes 5.5 instead of 5.0)
+
+High-Energy Pop
+  Baseline                               | Experiment
+  Sunrise City (4.87)                    | Sunrise City (5.32)
+  Gym Hero (3.85)                        | Gym Hero (4.23)
+  Fuego Lento (2.77)                     | Fuego Lento (4.20)
+  Rooftop Lights (2.69)                  | Rooftop Lights (4.05)
+  Storm Runner (1.86)                    | Storm Runner (3.27)
+
+Conflicted: Sad but High-Energy
+  Baseline                               | Experiment
+  Rainy Day Blues (3.72)                 | Rainy Day Blues (3.44)
+  Storm Runner (1.48)                    | Storm Runner (2.97)
+  Gym Hero (1.46)                        | Gym Hero (2.91)
+  Bassline Bloom (1.43)                  | Bassline Bloom (2.85)
+  Iron Tide (1.40)                       | Iron Tide (2.79)
+
+Chill Lofi
+  Baseline                               | Experiment
+  Library Rain (4.93)                    | Library Rain (5.43)
+  Midnight Coding (4.75)                 | Midnight Coding (5.14)
+  Focus Flow (3.81)                      | Spacewalk Thoughts (4.25)
+  Spacewalk Thoughts (2.85)              | Focus Flow (4.24)
+  Coffee Shop Stories (1.92)             | Coffee Shop Stories (3.38)
+```
+
+The results became **different, not clearly better**: *Gym Hero*'s lead over the happy latin song *Fuego Lento* shrank from 1.08 points to 0.03, and for the lofi fan the ambient *chill* song passed the lofi *focused* song. The conflicted blues fan still got the slow blues song first. I kept the original weights.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
+- **Tiny, uneven catalog:** 20 songs, and 15 of 17 genres have only one song, so genre fans quickly run out of matches.
+- **Genre dominates:** a +2.0 label match beats mood and energy, which is why *Gym Hero* shows up for happy-pop fans.
+- **Exact text matching:** "indie pop" doesn't count as pop, and "relaxed" doesn't count as chill.
+- **No understanding of lyrics, language or listening history**, and no learning from feedback.
+- **Unequal treatment of users:** fans of genres that aren't in the catalog can only ever reach about half the maximum score.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+More detail is in the [model card](model_card.md).
 
 ---
 
 ## Reflection
 
-Read and complete `model_card.md`:
+Read the full [**Model Card**](model_card.md).
 
-[**Model Card**](model_card.md)
+Building VibeFinder showed me that a recommender is really two decisions: a *scoring rule* that turns data into a number for one song, and a *ranking rule* that compares all the numbers. Real platforms do the same thing at a much bigger scale, with learned weights and listening history instead of my hand-picked points. What made the system feel smart was mostly the choice of features and weights, not complicated code.
 
-Write 1 to 2 paragraphs here about what you learned:
-
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
-
-
-
+It also showed me where unfairness creeps in without anyone intending it. Because genre is worth the most and most genres have only one song, the system quietly favors listeners whose taste matches what's already common in the catalog (pop, lofi), and gives everyone else weaker, more generic lists. In a real app, that same pattern could keep pushing already-popular genres and artists and make it harder for smaller ones to be discovered.

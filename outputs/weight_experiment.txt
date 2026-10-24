@@ -1,0 +1,26 @@
+Experiment: GENRE_POINTS 2.0 -> 1.0, ENERGY_POINTS 1.5 -> 3.0 (max possible score becomes 5.5 instead of 5.0)
+
+High-Energy Pop
+  Baseline                               | Experiment
+  Sunrise City (4.87)                    | Sunrise City (5.32)
+  Gym Hero (3.85)                        | Gym Hero (4.23)
+  Fuego Lento (2.77)                     | Fuego Lento (4.20)
+  Rooftop Lights (2.69)                  | Rooftop Lights (4.05)
+  Storm Runner (1.86)                    | Storm Runner (3.27)
+
+Conflicted: Sad but High-Energy
+  Baseline                               | Experiment
+  Rainy Day Blues (3.72)                 | Rainy Day Blues (3.44)
+  Storm Runner (1.48)                    | Storm Runner (2.97)
+  Gym Hero (1.46)                        | Gym Hero (2.91)
+  Bassline Bloom (1.43)                  | Bassline Bloom (2.85)
+  Iron Tide (1.40)                       | Iron Tide (2.79)
+
+Chill Lofi
+  Baseline                               | Experiment
+  Library Rain (4.93)                    | Library Rain (5.43)
+  Midnight Coding (4.75)                 | Midnight Coding (5.14)
+  Focus Flow (3.81)                      | Spacewalk Thoughts (4.25)
+  Spacewalk Thoughts (2.85)              | Focus Flow (4.24)
+  Coffee Shop Stories (1.92)             | Coffee Shop Stories (3.38)
+
