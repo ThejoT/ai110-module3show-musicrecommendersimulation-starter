@@ -101,3 +101,61 @@ def test_recommend_songs_is_sorted_and_returns_k_results():
     assert len(recs) == 5
     assert scores == sorted(scores, reverse=True)
     assert recs[0][0]["genre"] == "lofi"
+
+
+# ----- Stretch features ----------------------------------------------------- #
+import pytest  # noqa: E402
+
+from src.recommender import STRATEGIES, get_strategy  # noqa: E402
+
+POP = {"genre": "pop", "mood": "happy", "energy": 0.85, "likes_acoustic": False}
+
+
+def test_dataset_has_five_advanced_attributes():
+    for field in ("popularity", "release_decade", "mood_tags", "instrumentalness", "speechiness"):
+        assert all(field in song for song in SONGS)
+    assert isinstance(SONGS[0]["popularity"], int)
+
+
+def test_advanced_preferences_change_the_score():
+    song = next(s for s in SONGS if s["title"] == "Midnight Coding")
+    base, _ = score_song({"genre": "lofi"}, song)
+    advanced, reasons = score_song({"genre": "lofi", "decade": "2020s",
+                                    "mood_tags": ["late-night", "cozy"],
+                                    "likes_instrumental": True}, song)
+    assert advanced > base
+    assert any("mood tags: late-night, cozy" in r for r in reasons)
+
+
+def test_unset_advanced_preferences_are_ignored():
+    song = SONGS[0]
+    assert score_song(POP, song) == score_song({**POP, "decade": None}, song)
+
+
+def test_there_are_three_switchable_modes():
+    assert set(STRATEGIES) == {"genre-first", "mood-first", "energy-focused"}
+    with pytest.raises(ValueError):
+        get_strategy("random")
+
+
+def test_mood_first_removes_gym_hero_from_happy_pop_top_three():
+    genre_first = [s["title"] for s, _, _ in recommend_songs(POP, SONGS, 3)]
+    mood_first = [s["title"] for s, _, _ in recommend_songs(POP, SONGS, 3, mode="mood-first")]
+    assert "Gym Hero" in genre_first
+    assert "Gym Hero" not in mood_first
+
+
+def test_energy_focused_prefers_energy_over_genre_label():
+    prefs = {"genre": "blues", "mood": "sad", "energy": 0.9}
+    top = recommend_songs(prefs, SONGS, 1, mode="energy-focused")[0][0]
+    assert top["energy"] >= 0.85
+
+
+def test_diversity_penalty_limits_repeated_artists_and_genres():
+    prefs = {"genre": "lofi", "mood": "chill", "energy": 0.35, "likes_acoustic": True}
+    plain = recommend_songs(prefs, SONGS, 5)
+    diverse = recommend_songs(prefs, SONGS, 5, diverse=True)
+    count = lambda recs, key, value: sum(s[key] == value for s, _, _ in recs)  # noqa: E731
+    assert count(plain, "artist", "LoRoom") == 2 and count(diverse, "artist", "LoRoom") == 1
+    assert count(diverse, "genre", "lofi") < count(plain, "genre", "lofi")
+    assert any("diversity:" in why for _, _, why in diverse)
