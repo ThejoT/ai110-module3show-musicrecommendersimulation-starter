@@ -2,32 +2,63 @@
 
 ## Project Summary
 
-In this project you will build and explain a small music recommender system.
-
-Your goal is to:
-
-- Represent songs and a user "taste profile" as data
-- Design a scoring rule that turns that data into recommendations
-- Evaluate what your system gets right and wrong
-- Reflect on how this mirrors real world AI recommenders
-
-Replace this paragraph with your own summary of what your version does.
+**VibeFinder 1.0** is a small, content-based music recommender. It reads a catalog of 20 songs from `data/songs.csv`, compares each song with a user's "taste profile" (favorite genre, favorite mood, target energy and whether they like acoustic sound), gives every song a score with a list of human-readable reasons, and returns the top matches. It's a simulation of how apps like Spotify decide what to play next, built to show how data becomes a recommendation and where that process can be biased.
 
 ---
 
 ## How The System Works
 
-Explain your design in plain language.
+### How real-world recommenders work
 
-Some prompts to answer:
+Platforms like Spotify and YouTube combine two main approaches. **Collaborative filtering** uses *other people's behavior*: if many listeners who liked songs A and B also liked song C, then someone who likes A and B is likely to enjoy C, even if the system knows nothing about how C sounds. **Content-based filtering** uses *the song's own attributes*, such as genre, mood, tempo, energy, danceability and acousticness (Spotify computes audio features like these for every track), and recommends songs whose attributes are close to what the user already likes.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+Both rely on three different kinds of information, which are easy to mix up:
 
-You can include a simple diagram or bullet list if helpful.
+1. **Input data (about the items):** the catalog and its features, for example `genre = lofi`, `energy = 0.42`, `tempo_bpm = 78`.
+2. **User preferences (about the person):** either stated explicitly (a chosen genre) or learned implicitly from history: likes, skips, replays, playlist adds and listening time. A skip within a few seconds is a strong negative signal; adding a song to a playlist is a strong positive one.
+3. **Ranking and selection (the decision):** a model scores every candidate song for this user, sorts the candidates, and selects the top few. Real systems then re-rank for business and quality goals, such as mixing in new releases, avoiding five songs by the same artist in a row, or exploring something new.
+
+Real systems learn their scoring from millions of interactions. VibeFinder is a **content-based** system with a **hand-written scoring rule**, so every decision can be explained.
+
+### What VibeFinder uses
+
+**`Song` features** (from `data/songs.csv`):
+
+| Feature | Type | Used in scoring? |
+|---------|------|------------------|
+| `genre` | text | ✅ exact match |
+| `mood` | text | ✅ exact match |
+| `energy` | 0.0–1.0 | ✅ closeness to the user's target |
+| `acousticness` | 0.0–1.0 | ✅ if the user has an acoustic preference |
+| `title`, `artist`, `id` | text / int | for display |
+| `tempo_bpm`, `valence`, `danceability` | numbers | loaded, not scored in the base recipe |
+
+**`UserProfile` / `user_prefs`:** `genre` (favorite genre), `mood` (favorite mood), `energy` (target energy, 0–1) and `likes_acoustic` (optional, True/False).
+
+### Algorithm recipe
+
+**Scoring rule (one song):**
+
+| Rule | Points |
+|------|--------|
+| Genre matches the user's favorite genre | **+2.0** |
+| Mood matches the user's favorite mood | **+1.0** |
+| Energy closeness: `1.5 × (1 − |song energy − target energy|)` | **0 to +1.5** |
+| Acoustic preference: `0.5 × acousticness` if they like acoustic, `0.5 × (1 − acousticness)` if they don't | **0 to +0.5** |
+
+The maximum possible score is **5.0**. Energy uses *closeness* rather than "higher is better": a user who wants 0.4 energy gets the most points from a 0.4 song, and points shrink evenly as the gap grows, so both very calm and very intense songs are penalized for a mid-energy listener.
+
+**Ranking rule (the whole list):** score every song in the catalog with the scoring rule, sort from highest to lowest score, and return the top *k* (5 by default). A scoring rule alone can only judge one song in isolation; you need the ranking rule to compare all of them and decide which ones the user actually sees.
+
+```
+User prefs ──► for each of the 20 songs: score_song() ──► (score, reasons) ──► sort high→low ──► top k
+```
+
+### Biases I expect
+
+- **Genre dominates.** A genre match (+2.0) is worth more than a perfect mood match plus near-perfect energy, so a great song in a neighboring genre (e.g. "indie pop" for a "pop" fan) can lose to a mediocre song in the exact genre.
+- **Exact text matching is brittle.** "indie pop" ≠ "pop" and "chill" ≠ "relaxed", even though people hear them as close.
+- **Uneven catalog.** Some genres have three songs (lofi) and many have one, so fans of rare genres will quickly run out of genre matches.
 
 ---
 
