@@ -1,0 +1,35 @@
+Loaded songs: 20
+
+Late-Night Focus (advanced)  [mode: genre-first]
+Profile: genre=lofi, mood=focused, energy=0.4, likes_acoustic=True, decade=2020s, mood_tags=late-night/cozy/focused, popularity=niche, likes_instrumental=True, likes_spoken_word=False
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| #  | Song                   | Artist           | Genre      | Score | Why                                                |
++====+========================+==================+============+=======+====================================================+
+| 1  | Focus Flow             | LoRoom           | lofi       | 6.78  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | mood match: focused (+1.00)                        |
+|    |                        |                  |            |       | energy 0.40 vs target 0.40 (+1.50)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.78 (+0.39)          |
+|    |                        |                  |            |       | from the 2020s (+0.50)                             |
+|    |                        |                  |            |       | mood tags: focused (+0.25)                         |
+|    |                        |                  |            |       | lesser-known, 58/100 (+0.21)                       |
+|    |                        |                  |            |       | instrumental, 0.88 (+0.44)                         |
+|    |                        |                  |            |       | little spoken word/rap, speechiness 0.02 (+0.49)   |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 2  | Midnight Coding        | LoRoom           | lofi       | 6.18  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | energy 0.42 vs target 0.40 (+1.47)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.71 (+0.35)          |
+|    |                        |                  |            |       | from the 2020s (+0.50)                             |
+|    |                        |                  |            |       | mood tags: late-night, cozy, focused (+0.75)       |
+|    |                        |                  |            |       | lesser-known, 61/100 (+0.20)                       |
+|    |                        |                  |            |       | instrumental, 0.85 (+0.42)                         |
+|    |                        |                  |            |       | little spoken word/rap, speechiness 0.03 (+0.48)   |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 3  | Library Rain           | Paper Lanterns   | lofi       | 5.77  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | energy 0.35 vs target 0.40 (+1.42)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.86 (+0.43)          |
+|    |                        |                  |            |       | from the 2020s (+0.50)                             |
+|    |                        |                  |            |       | mood tags: cozy (+0.25)                            |
+|    |                        |                  |            |       | lesser-known, 55/100 (+0.22)                       |
+|    |                        |                  |            |       | instrumental, 0.90 (+0.45)                         |
+|    |                        |                  |            |       | little spoken word/rap, speechiness 0.02 (+0.49)   |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+

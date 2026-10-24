@@ -5,23 +5,23 @@ Profile: genre=pop, mood=happy, energy=0.85, likes_acoustic=False
 
 1. Sunrise City by Neon Echo (pop, happy)
    Score: 4.87
-   - genre match: pop (+2.0)
-   - mood match: happy (+1.0)
+   - genre match: pop (+2.00)
+   - mood match: happy (+1.00)
    - energy 0.82 vs target 0.85 (+1.46)
    - electronic/produced sound, acousticness 0.18 (+0.41)
 2. Gym Hero by Max Pulse (pop, intense)
    Score: 3.85
-   - genre match: pop (+2.0)
+   - genre match: pop (+2.00)
    - energy 0.93 vs target 0.85 (+1.38)
    - electronic/produced sound, acousticness 0.05 (+0.47)
 3. Fuego Lento by Mar y Sol (latin, happy)
    Score: 2.77
-   - mood match: happy (+1.0)
+   - mood match: happy (+1.00)
    - energy 0.80 vs target 0.85 (+1.43)
    - electronic/produced sound, acousticness 0.30 (+0.35)
 4. Rooftop Lights by Indigo Parade (indie pop, happy)
    Score: 2.69
-   - mood match: happy (+1.0)
+   - mood match: happy (+1.00)
    - energy 0.76 vs target 0.85 (+1.36)
    - electronic/produced sound, acousticness 0.35 (+0.33)
 5. Storm Runner by Voltline (rock, intense)
@@ -34,24 +34,24 @@ Profile: genre=lofi, mood=chill, energy=0.35, likes_acoustic=True
 
 1. Library Rain by Paper Lanterns (lofi, chill)
    Score: 4.93
-   - genre match: lofi (+2.0)
-   - mood match: chill (+1.0)
+   - genre match: lofi (+2.00)
+   - mood match: chill (+1.00)
    - energy 0.35 vs target 0.35 (+1.50)
    - acoustic sound, acousticness 0.86 (+0.43)
 2. Midnight Coding by LoRoom (lofi, chill)
    Score: 4.75
-   - genre match: lofi (+2.0)
-   - mood match: chill (+1.0)
+   - genre match: lofi (+2.00)
+   - mood match: chill (+1.00)
    - energy 0.42 vs target 0.35 (+1.40)
    - acoustic sound, acousticness 0.71 (+0.35)
 3. Focus Flow by LoRoom (lofi, focused)
    Score: 3.81
-   - genre match: lofi (+2.0)
+   - genre match: lofi (+2.00)
    - energy 0.40 vs target 0.35 (+1.42)
    - acoustic sound, acousticness 0.78 (+0.39)
 4. Spacewalk Thoughts by Orbit Bloom (ambient, chill)
    Score: 2.85
-   - mood match: chill (+1.0)
+   - mood match: chill (+1.00)
    - energy 0.28 vs target 0.35 (+1.40)
    - acoustic sound, acousticness 0.92 (+0.46)
 5. Coffee Shop Stories by Slow Stereo (jazz, relaxed)
@@ -64,13 +64,13 @@ Profile: genre=rock, mood=intense, energy=0.9, likes_acoustic=False
 
 1. Storm Runner by Voltline (rock, intense)
    Score: 4.93
-   - genre match: rock (+2.0)
-   - mood match: intense (+1.0)
+   - genre match: rock (+2.00)
+   - mood match: intense (+1.00)
    - energy 0.91 vs target 0.90 (+1.48)
    - electronic/produced sound, acousticness 0.10 (+0.45)
 2. Gym Hero by Max Pulse (pop, intense)
    Score: 2.93
-   - mood match: intense (+1.0)
+   - mood match: intense (+1.00)
    - energy 0.93 vs target 0.90 (+1.46)
    - electronic/produced sound, acousticness 0.05 (+0.47)
 3. Bassline Bloom by DJ Kestrel (edm, euphoric)
@@ -91,8 +91,8 @@ Profile: genre=blues, mood=sad, energy=0.9
 
 1. Rainy Day Blues by Otis Gray (blues, sad)
    Score: 3.72
-   - genre match: blues (+2.0)
-   - mood match: sad (+1.0)
+   - genre match: blues (+2.00)
+   - mood match: sad (+1.00)
    - energy 0.38 vs target 0.90 (+0.72)
 2. Storm Runner by Voltline (rock, intense)
    Score: 1.48
@@ -112,15 +112,15 @@ Profile: genre=k-pop, mood=happy, energy=0.7
 
 1. Rooftop Lights by Indigo Parade (indie pop, happy)
    Score: 2.41
-   - mood match: happy (+1.0)
+   - mood match: happy (+1.00)
    - energy 0.76 vs target 0.70 (+1.41)
 2. Fuego Lento by Mar y Sol (latin, happy)
    Score: 2.35
-   - mood match: happy (+1.0)
+   - mood match: happy (+1.00)
    - energy 0.80 vs target 0.70 (+1.35)
 3. Sunrise City by Neon Echo (pop, happy)
    Score: 2.32
-   - mood match: happy (+1.0)
+   - mood match: happy (+1.00)
    - energy 0.82 vs target 0.70 (+1.32)
 4. Night Drive Loop by Neon Echo (synthwave, moody)
    Score: 1.42

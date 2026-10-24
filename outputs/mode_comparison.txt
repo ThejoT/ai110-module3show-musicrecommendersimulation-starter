@@ -1,0 +1,17 @@
+Top 3 per mode (python -m src.main --profile <name> --mode <mode>)
+
+High-Energy Pop
+  genre-first     Sunrise City (4.87), Gym Hero (3.85), Fuego Lento (2.77)
+  mood-first      Sunrise City (5.37), Fuego Lento (4.27), Rooftop Lights (4.19)
+  energy-focused  Sunrise City (4.32), Gym Hero (3.73), Fuego Lento (3.70)
+
+Conflicted: Sad but High-Energy
+  genre-first     Rainy Day Blues (3.72), Storm Runner (1.48), Gym Hero (1.46)
+  mood-first      Rainy Day Blues (4.22), Storm Runner (1.48), Gym Hero (1.46)
+  energy-focused  Storm Runner (2.97), Gym Hero (2.91), Bassline Bloom (2.85)
+
+Chill Lofi
+  genre-first     Library Rain (4.93), Midnight Coding (4.75), Focus Flow (3.81)
+  mood-first      Library Rain (5.43), Midnight Coding (5.25), Spacewalk Thoughts (4.36)
+  energy-focused  Library Rain (4.43), Midnight Coding (4.14), Spacewalk Thoughts (3.75)
+

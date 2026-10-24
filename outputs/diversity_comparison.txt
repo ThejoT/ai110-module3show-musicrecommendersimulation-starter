@@ -1,0 +1,57 @@
+Loaded songs: 20
+
+Chill Lofi  [mode: genre-first]
+Profile: genre=lofi, mood=chill, energy=0.35, likes_acoustic=True
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| #  | Song                   | Artist           | Genre      | Score | Why                                                |
++====+========================+==================+============+=======+====================================================+
+| 1  | Library Rain           | Paper Lanterns   | lofi       | 4.93  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.35 vs target 0.35 (+1.50)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.86 (+0.43)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 2  | Midnight Coding        | LoRoom           | lofi       | 4.75  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.42 vs target 0.35 (+1.40)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.71 (+0.35)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 3  | Focus Flow             | LoRoom           | lofi       | 3.81  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | energy 0.40 vs target 0.35 (+1.42)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.78 (+0.39)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 4  | Spacewalk Thoughts     | Orbit Bloom      | ambient    | 2.85  | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.28 vs target 0.35 (+1.40)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.92 (+0.46)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 5  | Coffee Shop Stories    | Slow Stereo      | jazz       | 1.92  | energy 0.37 vs target 0.35 (+1.47)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.89 (+0.45)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+Loaded songs: 20
+Mode: genre-first (genre +2.0, mood +1.0, energy up to +1.5) | diversity penalty on
+
+Chill Lofi  [mode: genre-first, diversity on]
+Profile: genre=lofi, mood=chill, energy=0.35, likes_acoustic=True
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| #  | Song                   | Artist           | Genre      | Score | Why                                                |
++====+========================+==================+============+=======+====================================================+
+| 1  | Library Rain           | Paper Lanterns   | lofi       | 4.93  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.35 vs target 0.35 (+1.50)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.86 (+0.43)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 2  | Midnight Coding        | LoRoom           | lofi       | 4.25  | genre match: lofi (+2.00)                          |
+|    |                        |                  |            |       | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.42 vs target 0.35 (+1.40)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.71 (+0.35)          |
+|    |                        |                  |            |       | diversity: 1 lofi song(s) already in list (-0.50)  |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 3  | Spacewalk Thoughts     | Orbit Bloom      | ambient    | 2.85  | mood match: chill (+1.00)                          |
+|    |                        |                  |            |       | energy 0.28 vs target 0.35 (+1.40)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.92 (+0.46)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 4  | Coffee Shop Stories    | Slow Stereo      | jazz       | 1.92  | energy 0.37 vs target 0.35 (+1.47)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.89 (+0.45)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+
+| 5  | Pine Cabin Letters     | The Quiet Fields | folk       | 1.87  | energy 0.30 vs target 0.35 (+1.42)                 |
+|    |                        |                  |            |       | acoustic sound, acousticness 0.90 (+0.45)          |
++----+------------------------+------------------+------------+-------+----------------------------------------------------+

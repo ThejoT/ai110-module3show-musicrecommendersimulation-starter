@@ -126,7 +126,7 @@ class RankingStrategy:
             if user_prefs["likes_spoken_word"]:
                 add(w["spoken"] * value, f"spoken/rap vocals, speechiness {value:.2f}")
             else:
-                add(w["spoken"] * (1 - value), f"sung/melodic, speechiness {value:.2f}")
+                add(w["spoken"] * (1 - value), f"little spoken word/rap, speechiness {value:.2f}")
 
         return round(score, 2), reasons
 
