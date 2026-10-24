@@ -59,3 +59,45 @@ def test_explain_recommendation_returns_non_empty_string():
     explanation = rec.explain_recommendation(user, song)
     assert isinstance(explanation, str)
     assert explanation.strip() != ""
+
+
+# ----- Functional API (load_songs / score_song / recommend_songs) ----------- #
+from src.recommender import load_songs, recommend_songs, score_song  # noqa: E402
+
+SONGS = load_songs("data/songs.csv")
+
+
+def test_load_songs_reads_all_rows_with_numeric_values():
+    assert len(SONGS) == 20
+    assert isinstance(SONGS[0]["energy"], float)
+    assert isinstance(SONGS[0]["id"], int)
+
+
+def test_score_song_returns_number_and_reasons_for_every_song():
+    prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    for song in SONGS:
+        score, reasons = score_song(prefs, song)
+        assert isinstance(score, float) and 0 <= score <= 5.0
+        assert reasons
+
+
+def test_perfect_match_scores_highest_possible_points():
+    song = {"genre": "pop", "mood": "happy", "energy": 0.8, "acousticness": 0.0}
+    score, _ = score_song({"genre": "pop", "mood": "happy", "energy": 0.8,
+                           "likes_acoustic": False}, song)
+    assert score == 5.0
+
+
+def test_energy_rewards_closeness_not_just_high_values():
+    prefs = {"energy": 0.4}
+    calm, _ = score_song(prefs, {"genre": "x", "mood": "x", "energy": 0.4, "acousticness": 0})
+    intense, _ = score_song(prefs, {"genre": "x", "mood": "x", "energy": 0.95, "acousticness": 0})
+    assert calm > intense
+
+
+def test_recommend_songs_is_sorted_and_returns_k_results():
+    recs = recommend_songs({"genre": "lofi", "mood": "chill", "energy": 0.4}, SONGS, k=5)
+    scores = [score for _, score, _ in recs]
+    assert len(recs) == 5
+    assert scores == sorted(scores, reverse=True)
+    assert recs[0][0]["genre"] == "lofi"

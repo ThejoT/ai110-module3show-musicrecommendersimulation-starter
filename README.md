@@ -71,7 +71,8 @@ User prefs ──► for each of the 20 songs: score_song() ──► (score, re
    ```bash
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
-   .venv\Scripts\activate         # Windows
+   source .venv/Scripts/activate  # Git Bash on Windows
+   ```
 
 2. Install dependencies
 
@@ -99,18 +100,37 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
+Output of `python -m src.main` for the default "pop / happy" profile:
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Loaded songs: 20
+
+=== Default: Pop / Happy ===
+Profile: genre=pop, mood=happy, energy=0.8
+
+1. Sunrise City by Neon Echo (pop, happy)
+   Score: 4.47
+   - genre match: pop (+2.0)
+   - mood match: happy (+1.0)
+   - energy 0.82 vs target 0.80 (+1.47)
+2. Gym Hero by Max Pulse (pop, intense)
+   Score: 3.30
+   - genre match: pop (+2.0)
+   - energy 0.93 vs target 0.80 (+1.30)
+3. Fuego Lento by Mar y Sol (latin, happy)
+   Score: 2.50
+   - mood match: happy (+1.0)
+   - energy 0.80 vs target 0.80 (+1.50)
+4. Rooftop Lights by Indigo Parade (indie pop, happy)
+   Score: 2.44
+   - mood match: happy (+1.0)
+   - energy 0.76 vs target 0.80 (+1.44)
+5. Concrete Verses by Lyric Kade (hip-hop, confident)
+   Score: 1.47
+   - energy 0.78 vs target 0.80 (+1.47)
 ```
 
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
+These results match my intuition: *Sunrise City* is the only song that is pop **and** happy **and** close to 0.8 energy, so it wins clearly. *Gym Hero* comes second only because of the +2.0 genre match, even though its mood is "intense", which is the first sign that genre carries a lot of weight.
 
 ---
 
